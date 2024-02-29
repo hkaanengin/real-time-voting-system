@@ -75,6 +75,19 @@ def generate_candidate_data(candidate_number, total_parties):
     else:
         return "Error fetching candidate data"
     
+def insert_candidates(conn, cur, candidate_data):
+    cur.execute(
+        """
+            INSERT INTO candidates(candidate_id, candidate_name, party_affiliation, biography, campaign_platform, photo_url)
+            VALUES(%s, %s, %s, %s, %s, %s)
+        """,
+        (
+            candidate_data["candidate_id"], candidate_data["candidate_name"], candidate_data["party_affiliation"], 
+            candidate_data["biography"], candidate_data["campaign_platform"], candidate_data["photo_url"]
+        )
+    )
+    conn.commit()
+
 def generate_voter_data():
     response = requests.get(BASE_URL)
     if response.status_code == 200:
@@ -128,18 +141,7 @@ if __name__ == "__main__":
         if len(candidates) == 0:
             for i in range(len(PARTIES)):  #refactor this part
                 candidate = generate_candidate_data(i, len(PARTIES))
-
-                cur.execute(
-                    """
-                        INSERT INTO candidates(candidate_id, candidate_name, party_affiliation, biography, campaign_platform, photo_url)
-                        VALUES(%s, %s, %s, %s, %s, %s)
-                    """,
-                    (
-                        candidate["candidate_id"], candidate["candidate_name"], candidate["party_affiliation"], 
-                        candidate["biography"], candidate["campaign_platform"], candidate["photo_url"]
-                    )
-                )
-                conn.commit()
+                insert_candidates(conn, cur, candidate)
 
         for i in range(NUMBER_OF_VOTERS):
             voter_data = generate_voter_data()
