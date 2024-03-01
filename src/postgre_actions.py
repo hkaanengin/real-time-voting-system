@@ -29,7 +29,7 @@ class PostgreActions():
                 CREATE TABLE IF NOT EXISTS voters (
                     voter_id VARCHAR(255) PRIMARY KEY,
                     voter_name VARCHAR(255),
-                    date_of_birth DATE VARCHAR(255),
+                    date_of_birth DATE,
                     gender VARCHAR(255),
                     nationality VARCHAR(255),
                     registration_number VARCHAR(255),
@@ -40,7 +40,7 @@ class PostgreActions():
                     address_postcode VARCHAR(255),
                     phone_number VARCHAR(255),
                     picture TEXT,
-                    registered_age INTEGER,
+                    registered_age INTEGER
                 )
             """
         )
@@ -113,16 +113,16 @@ class PostgreActions():
             }
 
     def insert_voters(self, voter_data):
-        self.cur.execute("""
-                INSERT INTO candidates(voter_id, voter_name, date_of_birth, gender, nationality, registration_number, 
+        self.cur.execute(
+            """
+                INSERT INTO voters(voter_id, voter_name, date_of_birth, gender, nationality, registration_number, 
                     address_street, address_city, address_state, address_country, address_postcode, phone_number, picture, registered_age)
                 VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """,
             (
                 voter_data["voter_id"], voter_data["voter_name"], voter_data["date_of_birth"], voter_data["gender"], voter_data["nationality"], 
                 voter_data["registration_number"], voter_data["address"]["street"], voter_data["address"]["city"], voter_data["address"]["state"],
-                voter_data["address"]["country"], voter_data["address"]["postcode"], voter_data["email"], voter_data["phone_number"], 
-                voter_data["picture"], voter_data["registered_age"]
+                voter_data["address"]["country"], voter_data["address"]["postcode"], voter_data["phone_number"], voter_data["picture"], voter_data["registered_age"]
             )
         )
         self.conn.commit()
