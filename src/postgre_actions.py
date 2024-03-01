@@ -1,13 +1,16 @@
 import psycopg2
 import requests
+from dotenv import load_dotenv
+import os
 
+DB_CREDENTIALS_ENV = ".\env-variables\.db-credentials.env"
 BASE_URL = "https://randomuser.me/api/?nat=tr"
 PARTIES = ['AKP', 'CHP', 'MHP', 'Iyi Parti']
-NUMBER_OF_VOTERS = 1000
 
-class PostgreActions():
+class PostgreActions:
     def __init__(self) -> None:
-        self.conn = psycopg2.connect("host=localhost dbname=votingDB user=kekuser password=kekpwd")  #get it from .env
+        load_dotenv(DB_CREDENTIALS_ENV)
+        self.conn = psycopg2.connect(f"host={os.getenv('host')} dbname={os.getenv('dbname')} user={os.getenv('user')} password={os.getenv('password')}")
         self.cur = self.conn.cursor()
 
     def postgre_create_tables(self):
