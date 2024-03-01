@@ -16,7 +16,7 @@ def delivery_report(err, msg):
         print(f"Message delivered to {msg.topic()} [{msg.partition()}]")
 
 if __name__ == "__main__":
-    producer = SerializingProducer({'bootstrap.servers': 'localhost:9092'})
+    producer = SerializingProducer({'bootstrap.servers': 'localhost:9092', })
     try:
         conn = psycopg2.connect("host=localhost dbname=votingDB user=kekuser password=kekpwd")
         cur = conn.cursor()
