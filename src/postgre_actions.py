@@ -13,6 +13,12 @@ class PostgreActions:
         self.conn = psycopg2.connect(f"host={os.getenv('host')} dbname={os.getenv('dbname')} user={os.getenv('user')} password={os.getenv('password')}")
         self.cur = self.conn.cursor()
 
+    def get_conn(self):
+        return self.conn
+
+    def get_cur(self):
+        return self.conn.cursor()
+
     def postgre_create_tables(self):
         self.cur.execute(
             """
@@ -126,6 +132,18 @@ class PostgreActions:
                 voter_data["voter_id"], voter_data["voter_name"], voter_data["date_of_birth"], voter_data["gender"], voter_data["nationality"], 
                 voter_data["registration_number"], voter_data["address"]["street"], voter_data["address"]["city"], voter_data["address"]["state"],
                 voter_data["address"]["country"], voter_data["address"]["postcode"], voter_data["phone_number"], voter_data["picture"], voter_data["registered_age"]
+            )
+        )
+        self.conn.commit()
+
+    def insert_votes(self, vote):
+        self.cur.execute(
+            """
+                INSERT INTO voters(voter_id, candidate_id, voting_time)
+                VALUES(%s, %s, %s)
+            """,
+            (
+                vote["voter_id"], vote["candidate_id"], vote["voting_time"]
             )
         )
         self.conn.commit()
