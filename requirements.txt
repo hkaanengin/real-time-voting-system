@@ -3,3 +3,4 @@ confluent_kafka
 simplejson
 requests
 python-dotenv
+pyspark
