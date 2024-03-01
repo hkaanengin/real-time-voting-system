@@ -18,16 +18,16 @@ def delivery_report(err, msg):
 if __name__ == "__main__":
     producer = SerializingProducer({'bootstrap.servers': 'localhost:9092'})
     try:
-        conn = psycopg2.connect("host=localhost dbname=votingDB user=kekuser password=kekpwd")
-        cur = conn.cursor()
+        conn = PostgreActions().get_conn()
+        cur = PostgreActions().get_cur()
         PostgreActions().postgre_create_tables()
 
         cur.execute("""
             SELECT * FROM candidates
         """)
-        candidates_number = cur.fetchall()
+        candidates = cur.fetchall()
 
-        if len(candidates_number) == 0:
+        if len(candidates) == 0:
             for i in range(len(PARTIES)):  #refactor this part
                 candidate = PostgreActions.populate_candidate_data(i, len(PARTIES))
                 print(candidate)
@@ -38,9 +38,9 @@ if __name__ == "__main__":
         cur.execute("""
             SELECT * FROM voters
         """)
-        voters_number = cur.fetchall()
+        voters = cur.fetchall()
 
-        for i in range(NUMBER_OF_VOTERS-len(voters_number)):
+        for i in range(NUMBER_OF_VOTERS-len(voters)):
             voter_data = PostgreActions.populate_voter_data()
             PostgreActions().insert_voters(voter_data)
 
