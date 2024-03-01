@@ -1,3 +1,4 @@
 psycopg2-binary
 confluent_kafka
 simplejson
+requests
