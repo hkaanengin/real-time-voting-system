@@ -9,7 +9,7 @@ class CustomSparkSession:
             .appName("RealtimeVotingMaster")
             .config("spark.jars.package", "org.apache.spark:spark-sql-kafka-0-10_2.13:3.5.1") #mvnRepo- Spark Kafka Structured->3.5.1
             .config("spark.jars", "/Users/.../pathtojarfile") # Postgresql driver https://jdbc.postgresql.org/download/ Java8
-            .config("spark.sql.adaptive.enable", 'false') #disable adaptive query execution
+            .config("spark.sql.adaptive.enable", 'false') #disable adaptive query executions
             .getOrCreate()
         )
     def _create_spark_session(self):
