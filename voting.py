@@ -1,5 +1,5 @@
 from src.postgre_actions import PostgreActions
-from confluence_kafka import Consumer, KafkaException, KafkaError, SerializingProducer
+from confluent_kafka import Consumer, KafkaException, KafkaError, SerializingProducer
 import simplejson as json
 import random
 from datetime import datetime
@@ -67,6 +67,6 @@ if __name__ == "__main__":
             except Exception as e:
                 print(f'Error inserting votes into DB due to: {e}')
         else:
-            print("loop breaked")
+            print(f"loop breaked due to error: {msg.error()}")
     except Exception as e:
         print(e)

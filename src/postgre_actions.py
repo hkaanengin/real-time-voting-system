@@ -3,9 +3,12 @@ import requests
 from dotenv import load_dotenv
 import os
 
-DB_CREDENTIALS_ENV = ".\env-variables\.db-credentials.env"
+DB_CREDENTIALS_ENV = "env-variables/.db-credentials.env"
 BASE_URL = "https://randomuser.me/api/?nat=tr"
 PARTIES = ['AKP', 'CHP', 'MHP', 'Iyi Parti']
+
+APP_ROOT = os.path.join(os.path.dirname(__file__))
+DB_CREDENTIALS_PATH = os.path.join(APP_ROOT, DB_CREDENTIALS_ENV)
 
 class PostgreActions:
     def __init__(self) -> None:
@@ -139,7 +142,7 @@ class PostgreActions:
     def insert_votes(self, vote):
         self.cur.execute(
             """
-                INSERT INTO voters(voter_id, candidate_id, voting_time)
+                INSERT INTO votes(voter_id, candidate_id, voting_time)
                 VALUES(%s, %s, %s)
             """,
             (
