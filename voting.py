@@ -67,6 +67,6 @@ if __name__ == "__main__":
             except Exception as e:
                 print(f'Error inserting votes into DB due to: {e}')
         else:
-            print("loop breaked")
+            print(f"loop breaked due to error: {msg.error()}")
     except Exception as e:
         print(e)
