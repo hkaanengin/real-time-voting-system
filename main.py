@@ -1,4 +1,3 @@
-import psycopg2
 import random
 from src.postgre_actions import PostgreActions
 from confluent_kafka import SerializingProducer
@@ -40,7 +39,7 @@ if __name__ == "__main__":
         """)
         voters = cur.fetchall()
 
-        for i in range(NUMBER_OF_VOTERS-len(voters)):
+        for i in range(NUMBER_OF_VOTERS+2-len(voters)):
             voter_data = PostgreActions.populate_voter_data()
             PostgreActions().insert_voters(voter_data)
 

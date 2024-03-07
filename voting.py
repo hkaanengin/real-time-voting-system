@@ -1,5 +1,5 @@
 from src.postgre_actions import PostgreActions
-from confluence_kafka import Consumer, KafkaException, KafkaError, SerializingProducer
+from confluent_kafka import Consumer, KafkaException, KafkaError, SerializingProducer
 import simplejson as json
 import random
 from datetime import datetime
@@ -55,6 +55,7 @@ if __name__ == "__main__":
                 }
             try:
                 print('User {} is voting for candidate: {}'.format(vote['voter_id'], vote['candidate_id']))
+                print(vote)
                 PostgreActions().insert_votes(vote)
 
                 producer.produce(
