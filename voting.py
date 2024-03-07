@@ -55,7 +55,6 @@ if __name__ == "__main__":
                 }
             try:
                 print('User {} is voting for candidate: {}'.format(vote['voter_id'], vote['candidate_id']))
-                print(vote)
                 PostgreActions().insert_votes(vote)
 
                 producer.produce(
