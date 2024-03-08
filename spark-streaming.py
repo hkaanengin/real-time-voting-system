@@ -1,6 +1,4 @@
-from pyspark.sql import SparkSession
 from pyspark.sql import DataFrame
-from pyspark.sql.types import StructType
 import pyspark.sql.functions as F
 
 from src.spark_session import CustomSparkSession
