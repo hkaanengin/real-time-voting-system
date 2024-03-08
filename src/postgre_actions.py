@@ -87,19 +87,6 @@ class PostgreActions:
         else:
             return "Error fetching candidate data"
         
-    def insert_candidates(self, candidate_data):
-        self.cur.execute(
-            """
-                INSERT INTO candidates(candidate_id, candidate_name, party_affiliation, biography, campaign_platform, photo_url)
-                VALUES(%s, %s, %s, %s, %s, %s)
-            """,
-            (
-                candidate_data["candidate_id"], candidate_data["candidate_name"], candidate_data["party_affiliation"], 
-                candidate_data["biography"], candidate_data["campaign_platform"], candidate_data["photo_url"]
-            )
-        )
-        self.conn.commit()
-
     def populate_voter_data():
         response = requests.get(BASE_URL)
         if response.status_code == 200:
@@ -123,6 +110,19 @@ class PostgreActions:
                 "picture": voter_data['picture']['large'],
                 "registered_age": voter_data['registered']['age']
             }
+
+    def insert_candidates(self, candidate_data):
+        self.cur.execute(
+            """
+                INSERT INTO candidates(candidate_id, candidate_name, party_affiliation, biography, campaign_platform, photo_url)
+                VALUES(%s, %s, %s, %s, %s, %s)
+            """,
+            (
+                candidate_data["candidate_id"], candidate_data["candidate_name"], candidate_data["party_affiliation"], 
+                candidate_data["biography"], candidate_data["campaign_platform"], candidate_data["photo_url"]
+            )
+        )
+        self.conn.commit()
 
     def insert_voters(self, voter_data):
         self.cur.execute(
