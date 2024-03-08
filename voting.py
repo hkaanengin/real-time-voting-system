@@ -17,7 +17,6 @@ consumer = Consumer(conf | {
 producer = SerializingProducer(conf)
 
 if __name__ == "__main__":
-    conn = PostgreActions().get_conn()
     cur = PostgreActions().get_cur()
 
     cur.execute("""

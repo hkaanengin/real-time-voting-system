@@ -17,7 +17,6 @@ def delivery_report(err, msg):
 if __name__ == "__main__":
     producer = SerializingProducer({'bootstrap.servers': 'localhost:9092'})
     try:
-        conn = PostgreActions().get_conn()
         cur = PostgreActions().get_cur()
         PostgreActions().postgre_create_tables()
 

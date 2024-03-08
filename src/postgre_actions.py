@@ -16,9 +16,6 @@ class PostgreActions:
         self.conn = psycopg2.connect(f"host={os.getenv('host')} dbname={os.getenv('dbname')} user={os.getenv('user')} password={os.getenv('password')}")
         self.cur = self.conn.cursor()
 
-    def get_conn(self):
-        return self.conn
-
     def get_cur(self):
         return self.conn.cursor()
 
