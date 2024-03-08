@@ -1,6 +1,5 @@
-from pyspark.sql import DataFrame
 import pyspark.sql.functions as F
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, TimestampType
+from pyspark.sql.types import IntegerType, TimestampType
 
 
 from src.spark_session import CustomSparkSession
