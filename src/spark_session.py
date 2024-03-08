@@ -29,7 +29,7 @@ class CustomSparkSession:
                 StructField("gender", StringType(), True),
                 StructField("nationality", StringType(), True),
                 StructField("registration_number", StringType(), True),
-                StructField("address:", StructType([
+                StructField("address", StructType([
                     StructField("street", StringType(), True),
                     StructField("city", StringType(), True),
                     StructField("state", StringType(), True),
