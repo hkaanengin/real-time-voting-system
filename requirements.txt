@@ -4,3 +4,4 @@ simplejson
 requests
 python-dotenv
 pyspark
+streamlit
