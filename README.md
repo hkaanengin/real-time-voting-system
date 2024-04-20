@@ -30,7 +30,7 @@ cd jars
 curl -O https://repo1.maven.org/maven2/org/apache/spark/spark-sql-kafka-0-10_2.13/3.3.0/spark-sql-kafka-0-10_2.13-3.3.0.jar
 ```
 Or simply going to Maven Repository and downloading them manually. Don't forget to move them to the root path of the project:
-- [Spark SQL Kafka](https://mvnrepository.com/artifact/org.apache.spark/spark-sql-kafka-0-10_2.13/3.5.1)
+- [Spark SQL Kafka MVN Repo](https://mvnrepository.com/artifact/org.apache.spark/spark-sql-kafka-0-10_2.13/3.5.1)
 
 Now, we can get the container up and running with the necessary services by issuing the command below, in your terminal :
 
