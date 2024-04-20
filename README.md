@@ -35,7 +35,7 @@ Or simply going to Maven Repository and downloading them manually. Don't forget 
 Now, we can get the container up and running with the necessary services by issuing the command below, in your terminal :
 
 ```bash
-docker compose up
+docker compose up -d 
 ```
 
 ## System Components
