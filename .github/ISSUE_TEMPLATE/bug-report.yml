@@ -1,0 +1,84 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: Your title here"
+labels: ["bug"]
+assignees:
+  - berkaygkv
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting, please:
+        - Check if a similar issue exists
+        - Include your software version
+        - Add relevant screenshots if possible
+
+  - type: dropdown
+    id: connection-type
+    attributes:
+      label: How did you connect to SpecHunt?
+      multiple: true
+      options:
+        - PC
+        - Phone
+        - API
+        - Other
+  
+  - type: input
+    id: other-connection
+    attributes:
+      label: If you selected "Other", please specify the browser
+      description: Please provide how you connected to SpecHunt
+    validations:
+      required: false
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Other
+  
+  - type: input
+    id: other-browser
+    attributes:
+      label: If you selected "Other", please specify the browser
+      description: Please provide the name of the browser you're using
+      placeholder: "e.g., Opera"
+    validations:
+      required: false
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. Search via query: '....'
+        5. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Additional Information
+      description: Please provide any relevant info you think might help. Such might be browser version, OS etc.
+      placeholder: |
