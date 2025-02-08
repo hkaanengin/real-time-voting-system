@@ -1,0 +1,15 @@
+name: Test Bug Report
+description: Test template
+title: "[Test]: "
+labels: ["test"]
+body:
+  - type: markdown
+    attributes:
+      value: Test template
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the issue
+    validations:
+      required: true
