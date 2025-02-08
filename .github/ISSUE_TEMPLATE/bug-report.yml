@@ -81,4 +81,4 @@ body:
     attributes:
       label: Additional Information
       description: Please provide any relevant info you think might help. Such might be browser version, OS etc.
-      placeholder: |
+      placeholder: "Add any additional information here"
